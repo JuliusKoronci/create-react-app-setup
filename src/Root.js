@@ -6,7 +6,6 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { Homepage, Dashboard } from './pages';
-import DevTools from './DevTools';
 
 const history = createHistory();
 const store = configureStore();
@@ -23,7 +22,6 @@ const Root = () => (
 				</BrowserRouter>
 			</ConnectedRouter>
 		</Provider>
-		<DevTools store={store} />
 	</div>
 );
 export default Root;

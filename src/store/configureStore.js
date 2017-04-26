@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
-import DevTools from '../DevTools';
 import { routerMiddleware } from 'react-router-redux';
 
 const middleware = routerMiddleware(history);
-const enhancer = compose(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers(
 	// Middleware you want to use in development:
-	applyMiddleware(middleware),
-	// Required! Enable Redux DevTools with the monitors you chose
-	DevTools.instrument()
+	applyMiddleware(middleware)
 );
 
 export default function configureStore(initialState = {}) {
