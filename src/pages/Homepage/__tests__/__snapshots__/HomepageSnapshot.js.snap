@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Component) Homepage Should match snapshot 1`] = `
+<div>
+  Homepage
+  <Link
+    replace={false}
+    to="/dashboard"
+  >
+    Dashboard
+  </Link>
+</div>
+`;
