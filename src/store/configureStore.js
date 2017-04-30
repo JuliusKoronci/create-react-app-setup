@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from './rootReducer';
-import DevTools from '../DevTools';
+import DevTools from '../modules/DevTools';
 
 export const history = createHistory();
 const routerMiddlewareWithHistory = routerMiddleware(history);
