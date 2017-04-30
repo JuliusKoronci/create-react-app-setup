@@ -24,7 +24,7 @@ const DemoView = ({ list, actions, form, errors }: Args) => {
 					<ul key={item.id}>
 						<li>{item.id}</li>
 						<li>{item.title}</li>
-						<li>{item.desc}</li>
+						<li>{item.desc}{item.wtd}</li>
 						<li>
 							<button onClick={() => actions.deleteEntry(item.id)}>delete item</button>
 						</li>

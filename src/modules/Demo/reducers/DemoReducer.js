@@ -33,12 +33,12 @@ export const initialState = {
 		{
 			id: 1,
 			label: 'Test',
-			desc: 'This is a demo test whatever json object'
+			desc: 'This is a demo test whatever json object',
 		}
 	]
 };
 
-const demoReducer = (state: Object = initialState, action: Object) => {
+const demoReducer = (state: Object = initialState, action: Obj) => {
 	switch (action.type) {
 		case demoActions.CREATE_ENTRY:
 			return actions[action.type](state, action);
