@@ -1,25 +1,36 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './rootReducer';
 import { routerMiddleware } from 'react-router-redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import createHistory from 'history/createBrowserHistory';
+import rootReducer from './rootReducer';
+import DevTools from '../DevTools';
 
-const middleware = routerMiddleware(history);
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancer = composeEnhancers(
-	// Middleware you want to use in development:
-	applyMiddleware(middleware)
-);
+export const history = createHistory();
+const routerMiddlewareWithHistory = routerMiddleware(history);
 
-export default function configureStore(initialState = {}) {
-	// Note: only Redux >= 3.1.0 supports passing enhancer as third argument.
-	// See https://github.com/reactjs/redux/releases/tag/v3.1.0
-	const store = createStore(rootReducer, initialState, enhancer);
-
-	// Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
-	if (module.hot) {
-		module.hot.accept('./rootReducer', () =>
-			store.replaceReducer(require('./rootReducer')/*.default if you use Babel 6+ */)
+function applyMiddlewareWithDevTool(...middleware) {
+	if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+		return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
+			applyMiddleware(...middleware)
 		);
 	}
 
-	return store;
+	return compose(
+		applyMiddleware(...middleware),
+		DevTools.instrument()
+	);
+
 }
+
+const createDevStore = createStore(
+	rootReducer,
+	applyMiddlewareWithDevTool(routerMiddlewareWithHistory, thunk, createLogger)
+);
+
+const createProdStore = createStore(
+	rootReducer,
+	applyMiddleware(routerMiddlewareWithHistory, thunk)
+);
+const env = process.env.NODE_ENV;
+export const store = env === 'development' ? createDevStore : createProdStore;
