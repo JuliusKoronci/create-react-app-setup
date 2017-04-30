@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Entry } from '../../types/types';
+import { Entry, Error } from '../../types/types';
 
 type Args = {
 	list: Array<Object>,
@@ -12,9 +12,10 @@ type Args = {
 		change: Function,
 	},
 	form: Entry,
+	errors: Array<Error>,
 }
 
-const DemoView = ({ list, actions, form }: Args) => {
+const DemoView = ({ list, actions, form, errors }: Args) => {
 	return (
 		<div>
 			<h2>List of entries</h2>
@@ -32,6 +33,11 @@ const DemoView = ({ list, actions, form }: Args) => {
 			})}
 
 			<form onSubmit={actions.submit}>
+				<ul style={{ color: 'red' }}>
+					{errors.map((error) => {
+						return <li>{`${error.message}`}</li>
+					})}
+				</ul>
 				<input
 					onChange={(e) => actions.change('title', e.target.value)}
 					type="text"

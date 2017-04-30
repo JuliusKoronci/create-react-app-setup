@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DemoView from '../components/DemoView';
 import { createEntry, deleteEntry } from '../actions/DemoActions';
-import { Entry } from '../types/types';
+import { Entry, Error } from '../types/types';
 
 type State = {
 	form: Entry,
+	errors: Array<Error>,
 }
 
 const initialState: Entry = {
@@ -21,6 +22,7 @@ export class Demo extends Component {
 
 	state: State = {
 		form: initialState,
+		errors: [],
 	};
 
 	/**
@@ -31,11 +33,14 @@ export class Demo extends Component {
 	 */
 	_onSubmit = (e: Event) => {
 		e.preventDefault();
-
+		if (!this._validateEntry(this.state.form)) {
+			return;
+		}
 		this.props.createEntry(this.state.form);
 
 		this.setState({
 			form: initialState,
+			errors: [],
 		});
 	};
 
@@ -55,13 +60,47 @@ export class Demo extends Component {
 		})
 	};
 
+	/**
+	 * Validate fields before submitting
+	 *
+	 * @param entry
+	 * @returns {boolean}
+	 * @private
+	 */
+	_validateEntry = (entry: Entry): boolean => {
+		const errors = [];
+		if (!entry.title || entry.title === '') {
+			errors.push({
+				field: 'title',
+				message: 'title is required',
+			})
+		}
+		if (!entry.desc || entry.desc === '') {
+			errors.push({
+				field: 'desc',
+				message: 'description is required',
+			})
+		}
+
+		if (errors.length === 0) {
+			return true;
+		}
+
+		this.setState({
+			errors: errors,
+		});
+
+		return false;
+	};
+
 	render() {
 		const { demo, deleteEntry } = this.props;
-		const { form } = this.state;
+		const { form, errors } = this.state;
 		return (
 			<DemoView
 				form={form}
 				list={demo.list}
+				errors={errors}
 				actions={
 					{
 						'submit': this._onSubmit,
