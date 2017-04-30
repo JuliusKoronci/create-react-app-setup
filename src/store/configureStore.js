@@ -32,6 +32,7 @@ const createProdStore = createStore(
 	rootReducer,
 	applyMiddleware(routerMiddlewareWithHistory, thunk)
 );
+
 const env = process.env.NODE_ENV;
 const store = env === 'development' ? createDevStore : createProdStore;
 

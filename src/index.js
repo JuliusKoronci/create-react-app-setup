@@ -14,7 +14,7 @@ ReactDOM.render(
 );
 
 if (module.hot) {
-	module.hot.accept('./modules/Root', () => {
+	module.hot.accept(() => {
 		const NextApp = require('./modules/Root').default;
 		ReactDOM.render(
 			<NextApp routes={routes} />,

@@ -33,7 +33,7 @@ export const initialState = {
 		{
 			id: 1,
 			label: 'Test',
-			desc: 'This is a demo test whatever json object',
+			desc: 'This is a demo test whatever json object'
 		}
 	]
 };
