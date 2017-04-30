@@ -33,4 +33,13 @@ const createProdStore = createStore(
 	applyMiddleware(routerMiddlewareWithHistory, thunk)
 );
 const env = process.env.NODE_ENV;
-export const store = env === 'development' ? createDevStore : createProdStore;
+const store = env === 'development' ? createDevStore : createProdStore;
+
+if (module.hot) {
+	module.hot.accept('./rootReducer', () => {
+		const nextRootReducer = require('./rootReducer').default;
+		store.replaceReducer(nextRootReducer);
+	});
+}
+
+export default store;

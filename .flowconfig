@@ -1,12 +1,12 @@
 [ignore]
 .*/node_modules/fbjs/.*
+.*/node_modules/react-event-listener/.*
 .*/node_modules/node-sass/.*
 .*/node_modules/react-motion/.*
 .*/__tests__/.*
 
 [include]
 ./src/
-./node_modules/gef.*
 
 [libs]
 ./flowTypes/

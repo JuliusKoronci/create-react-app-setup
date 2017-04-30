@@ -1,0 +1,44 @@
+exports[`(Component) Demo Should match snapshot 1`] = `
+<Demo
+  createEntry={[Function]}
+  deleteEntry={[Function]}
+  demo={
+    Object {
+      "list": Array [
+        Object {
+          "desc": "This is a demo test whatever json object",
+          "id": 1,
+          "label": "Test",
+        },
+      ],
+    }
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "notify": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": null,
+    }
+  } />
+`;

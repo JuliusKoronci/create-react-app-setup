@@ -1,0 +1,24 @@
+exports[`(Component) DemoView Should match snapshot 1`] = `
+<div>
+  <h2>
+    List of entries
+  </h2>
+  <form
+    onSubmit={[Function]}>
+    <input
+      onChange={[Function]}
+      placeholder="title"
+      type="text"
+      value="test" />
+    <input
+      onChange={[Function]}
+      placeholder="description"
+      type="text"
+      value="desc" />
+    <button
+      type="submit">
+      create
+    </button>
+  </form>
+</div>
+`;
