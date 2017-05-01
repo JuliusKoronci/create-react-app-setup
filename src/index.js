@@ -12,7 +12,7 @@ ReactDOM.render(
 	rootEl
 );
 
-if (module.hot) {
+if (process.env.NODE_ENV === 'development' && module.hot) {
 	module.hot.accept('./modules/Root', () => {
 		const NextApp = require('./modules/Root').default;
 		ReactDOM.render(
