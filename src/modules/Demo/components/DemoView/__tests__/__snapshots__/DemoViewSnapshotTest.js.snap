@@ -5,6 +5,47 @@ exports[`(Component) DemoView Should match snapshot 1`] = `
   </h2>
   <form
     onSubmit={[Function]}>
+    <ul
+      style={
+        Object {
+          "color": "red",
+        }
+      } />
+    <input
+      onChange={[Function]}
+      placeholder="title"
+      type="text"
+      value="test" />
+    <input
+      onChange={[Function]}
+      placeholder="description"
+      type="text"
+      value="desc" />
+    <button
+      type="submit">
+      create
+    </button>
+  </form>
+</div>
+`;
+
+exports[`(Component) DemoView Should match snapshot 2`] = `
+<div>
+  <h2>
+    List of entries
+  </h2>
+  <form
+    onSubmit={[Function]}>
+    <ul
+      style={
+        Object {
+          "color": "red",
+        }
+      }>
+      <li>
+        some field error
+      </li>
+    </ul>
     <input
       onChange={[Function]}
       placeholder="title"

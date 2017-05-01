@@ -34,8 +34,8 @@ const DemoView = ({ list, actions, form, errors }: Args) => {
 
 			<form onSubmit={actions.submit}>
 				<ul style={{ color: 'red' }}>
-					{errors.map((error) => {
-						return <li>{`${error.message}`}</li>
+					{errors.map((error, i) => {
+						return <li key={i}>{`${error.message}`}</li>
 					})}
 				</ul>
 				<input
