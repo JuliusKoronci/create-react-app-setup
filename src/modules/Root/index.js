@@ -1,15 +1,15 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import {
 	Route
 } from 'react-router-dom';
 import store, { history } from '../../store/configureStore';
 import { ConnectedRouter } from 'react-router-redux';
+import routes from '../../routes';
 
-const Root = ({ routes }: { routes: Array<Object> }) => {
+const Root = () => {
 	const _renderRoutes = (routes) => {
 		return routes.map((route) => {
 			return (
@@ -29,10 +29,6 @@ const Root = ({ routes }: { routes: Array<Object> }) => {
 			</ConnectedRouter>
 		</Provider>
 	)
-};
-
-Root.propTypes = {
-	routes: PropTypes.array.isRequired,
 };
 
 export default Root;
