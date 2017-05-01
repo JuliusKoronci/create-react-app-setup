@@ -36,7 +36,7 @@ const createProdStore = createStore(
 const env = process.env.NODE_ENV;
 const store = env === 'development' ? createDevStore : createProdStore;
 
-if (module.hot) {
+if (env === 'development' && module.hot) {
 	// Enable Webpack hot module replacement for reducers
 	module.hot.accept('./rootReducer', () => {
 		const nextRootReducer = require('./rootReducer').default;
