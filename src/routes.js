@@ -79,7 +79,7 @@ const generateRoutes = (routeList) => {
 	})
 };
 
-export default (
+export default () => (
 	<Route path="/">
 		{generateRoutes(routes)}
 	</Route>
