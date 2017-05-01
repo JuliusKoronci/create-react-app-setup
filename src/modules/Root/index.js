@@ -1,38 +1,26 @@
 // @flow
-
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import {
-	Route
-} from 'react-router-dom';
-import store, { history } from '../../store/configureStore';
-import { ConnectedRouter } from 'react-router-redux';
+import store from '../../store/configureStore';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import { Router } from 'react-router';
 
-const Root = ({ routes }: { routes: Array<Object> }) => {
-	const _renderRoutes = (routes) => {
-		return routes.map((route) => {
-			return (
-				<Route key={route.path} exact path={route.path} component={route.component()}>
-					{route.children && _renderRoutes(route.children)}
-				</Route>
-			)
-		})
-	};
-
-	return (
-		<Provider store={store}>
-			<ConnectedRouter history={history}>
-				<div>
-					{_renderRoutes(routes)}
-				</div>
-			</ConnectedRouter>
-		</Provider>
-	)
-};
+class Root extends Component {
+	render() {
+		const history = syncHistoryWithStore(browserHistory, store);
+		const { routes } = this.props;
+		return (
+			<Provider store={store}>
+				<Router history={history} routes={routes} />
+			</Provider>
+		)
+	}
+}
 
 Root.propTypes = {
-	routes: PropTypes.array.isRequired,
+	routes: PropTypes.node.isRequired,
 };
 
 export default Root;

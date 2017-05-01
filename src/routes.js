@@ -1,5 +1,7 @@
+// @flow
 import React from 'react';
 import { Homepage, DemoPage, Dashboard } from './pages';
+import { Route, IndexRoute } from 'react-router';
 
 type RouteItem = {
 	name: string,
@@ -11,7 +13,8 @@ const routes = [
 	{
 		name: 'homepage',
 		path: '/',
-		component: () => Homepage
+		component: () => Homepage,
+		index: true,
 	},
 	{
 		name: 'dashboard',
@@ -59,4 +62,25 @@ export const getPath = (name: string, params: {} = undefined, queryParams: {} = 
 	return path;
 };
 
-export default routes;
+const generateRoutes = (routeList) => {
+	return routeList.map((route) => {
+		if (route.index) {
+			return (
+				<IndexRoute key={route.path} component={route.component()}>
+					{route.children && generateRoutes(route.children)}
+				</IndexRoute>
+			)
+		}
+		return (
+			<Route key={route.path} path={route.path} component={route.component()}>
+				{route.children && generateRoutes(route.children)}
+			</Route>
+		)
+	})
+};
+
+export default (
+	<Route path="/">
+		{generateRoutes(routes)}
+	</Route>
+);
