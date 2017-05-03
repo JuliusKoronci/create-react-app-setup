@@ -7,9 +7,9 @@ import {
 } from 'react-router-dom';
 import store, { history } from '../../store/configureStore';
 import { ConnectedRouter } from 'react-router-redux';
-import withDI, { DIType } from '../../DI';
+import withDI from '../../DI';
 
-const Root = ({ di }: { di: DIType }) => {
+const Root = ({ di }) => {
 	const _renderRoutes = (routes) => {
 		return routes.map((route) => {
 			return (
@@ -24,7 +24,7 @@ const Root = ({ di }: { di: DIType }) => {
 		<Provider store={store}>
 			<ConnectedRouter history={history}>
 				<div>
-					{_renderRoutes(di.routes())}
+					{_renderRoutes(di.get('routes'))}
 				</div>
 			</ConnectedRouter>
 		</Provider>

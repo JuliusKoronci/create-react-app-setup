@@ -13,12 +13,18 @@ export type DIType = {
 export default function injectDI(WrappedComponent) {
 	const di = {
 		routes: () => routes,
-		getPath,
+		getPath: () => getPath,
+	};
+
+	const DiUtils: {
+		get: <T>(key: string) => DIType,
+	} = {
+		get: (key) => di[key](),
 	};
 	return class DI extends React.Component {
 		render() {
 			// add state to WrappedComponent
-			return <WrappedComponent di={di} />
+			return <WrappedComponent di={DiUtils} />
 		}
 	}
 }
