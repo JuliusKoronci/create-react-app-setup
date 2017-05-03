@@ -1,5 +1,4 @@
 // @flow
-
 import React from 'react';
 import { Provider } from 'react-redux';
 import {
@@ -7,9 +6,9 @@ import {
 } from 'react-router-dom';
 import store, { history } from '../../store/configureStore';
 import { ConnectedRouter } from 'react-router-redux';
-import routes from '../../routes';
+import withDI from '../../DI';
 
-const Root = () => {
+const Root = ({ di }) => {
 	const _renderRoutes = (routes) => {
 		return routes.map((route) => {
 			return (
@@ -24,11 +23,11 @@ const Root = () => {
 		<Provider store={store}>
 			<ConnectedRouter history={history}>
 				<div>
-					{_renderRoutes(routes)}
+					{_renderRoutes(di.routes())}
 				</div>
 			</ConnectedRouter>
 		</Provider>
 	)
 };
 
-export default Root;
+export default withDI(Root);

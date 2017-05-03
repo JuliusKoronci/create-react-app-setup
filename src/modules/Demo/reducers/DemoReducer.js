@@ -38,7 +38,7 @@ export const initialState = {
 	]
 };
 
-const demoReducer = (state: Object = initialState, action: Obj) => {
+const demoReducer = (state: Object = initialState, action: Object) => {
 	switch (action.type) {
 		case demoActions.CREATE_ENTRY:
 			return actions[action.type](state, action);
