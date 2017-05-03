@@ -1,14 +1,15 @@
 // @flow
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import {
 	Route
 } from 'react-router-dom';
 import store, { history } from '../../store/configureStore';
 import { ConnectedRouter } from 'react-router-redux';
-import withDI from '../../DI';
+import withDI, { DIType } from '../../DI';
 
-const Root = ({ di }) => {
+const Root = ({ di }: { di: DIType }) => {
 	const _renderRoutes = (routes) => {
 		return routes.map((route) => {
 			return (
@@ -28,6 +29,10 @@ const Root = ({ di }) => {
 			</ConnectedRouter>
 		</Provider>
 	)
+};
+
+Root.propTypes = {
+	di: PropTypes.object.isRequired,
 };
 
 export default withDI(Root);
