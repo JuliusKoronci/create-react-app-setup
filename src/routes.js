@@ -7,17 +7,15 @@ const routes = [
 		name: 'homepage',
 		path: '/',
 		component: () => Homepage
-	},
-	{
+	}, {
 		name: 'dashboard',
 		path: '/dashboard',
 		component: () => Dashboard
-	},
-	{
+	}, {
 		name: 'demo',
 		path: '/demo/:id',
 		component: () => DemoPage
-	},
+	}
 ];
 
 function mapToQueryString(json) {
@@ -38,7 +36,7 @@ function mapToQueryString(json) {
  * @param params
  * @param queryParams
  */
-export const getPath = (name: string, params: ?{} = undefined, queryParams: ?{} = undefined) => {
+export const getPath = (name: string, params: ? {} = undefined, queryParams: ? {} = undefined) => {
 	const route: RouteItem = routes.find((item: RouteItem) => item.name === name);
 	let path = route.path;
 	if (params) {
