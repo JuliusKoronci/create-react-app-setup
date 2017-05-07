@@ -7,11 +7,14 @@ import {
 } from 'react-router-dom';
 import store, { history } from '../../store/configureStore';
 import { ConnectedRouter } from 'react-router-redux';
+import { DIType, RouteItems, RouteItem } from '../../FlowTypes';
 import withDI from '../../DI';
 
-const Root = ({ di }) => {
-	const _renderRoutes = (routes) => {
-		return routes.map((route) => {
+type Props = { di: DIType };
+
+const Root = ({ di }: Props) => {
+	const _renderRoutes = (routes: Array<RouteItems>) => {
+		return routes.map((route: RouteItem) => {
 			return (
 				<Route key={route.path} exact path={route.path} component={route.component()}>
 					{route.children && _renderRoutes(route.children)}

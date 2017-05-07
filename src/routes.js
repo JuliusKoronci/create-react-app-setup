@@ -1,11 +1,6 @@
-import React from 'react';
+// @flow
 import { Homepage, DemoPage, Dashboard } from './pages';
-
-type RouteItem = {
-	name: string,
-	path: string,
-	component?: React.Element<*>,
-}
+import { RouteItem } from './FlowTypes';
 
 const routes = [
 	{
@@ -43,8 +38,8 @@ function mapToQueryString(json) {
  * @param params
  * @param queryParams
  */
-export const getPath = (name: string, params: {} = undefined, queryParams: {} = undefined) => {
-	const route = routes.find((item: RouteItem) => item.name === name);
+export const getPath = (name: string, params: ?{} = undefined, queryParams: ?{} = undefined) => {
+	const route: RouteItem = routes.find((item: RouteItem) => item.name === name);
 	let path = route.path;
 	if (params) {
 		for (const i in params) {

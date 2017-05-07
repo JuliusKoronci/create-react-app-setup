@@ -1,49 +1,8 @@
 exports[`Root DemoView Should match snapshot 1`] = `
-<Provider
-  store={
+<Root
+  di={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
+      "get": [Function],
     }
-  }>
-  <ConnectedRouter
-    history={
-      Object {
-        "action": "POP",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "key": undefined,
-          "pathname": "/",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
-      }
-    }>
-    <div>
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/" />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/dashboard" />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/demo/:id" />
-    </div>
-  </ConnectedRouter>
-</Provider>
+  } />
 `;

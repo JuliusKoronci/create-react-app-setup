@@ -1,24 +1,15 @@
+// @flow
 import React from 'react';
 import routes, { getPath } from './routes';
+import { DIType } from './FlowTypes';
 
-export type DIType = {
-	routes: <T>() => Array<{
-		name: string,
-		path: string,
-		component: Function
-	}>,
-	getPath: <T>(name: string, params: ?{}, queryParams: ?{}) => string,
-};
-
-export default function injectDI(WrappedComponent) {
+export default function injectDI(WrappedComponent: any) {
 	const di = {
 		routes: () => routes,
 		getPath: () => getPath,
 	};
 
-	const DiUtils: {
-		get: <T>(key: string) => DIType,
-	} = {
+	const DiUtils: { get: <T>(key: string) => DIType } = {
 		get: (key) => di[key](),
 	};
 	return class DI extends React.Component {
