@@ -12,3 +12,4 @@
 ./flowTypes/
 [options]
 suppress_comment=\\(.\\|\n\\)*\\@SuppressImportWarn
+#experimental.strict_call_arity=true

@@ -2,20 +2,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import DI from '../../DI';
+import DI from '../../diFactory';
 
-const Homepage = ({ di }) => (
+type Props = {
+	getPath: () => () => string,
+}
+
+export const Homepage = ({ getPath }: Props) => (
 	<div>
 		Homepage
 		<br />
-		<Link to={di.get('getPath')('dashboard')}>Dashboard</Link>
+		<Link to={getPath()('dashboard')}>Dashboard</Link>
 		<br />
-		<Link to={di.get('getPath')('demo', { id: 1 }, { limit: 10 })}>Demo</Link>
+		<Link to={getPath()('demo', { id: 1 }, { limit: 10 })}>Demo</Link>
 	</div>
 );
 
 Homepage.propTypes = {
-	di: PropTypes.object.isRequired,
+	getPath: PropTypes.func.isRequired,
 };
 
-export default DI(Homepage);
+export default DI()(Homepage);

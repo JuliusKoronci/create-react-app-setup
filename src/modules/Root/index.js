@@ -7,12 +7,12 @@ import {
 } from 'react-router-dom';
 import store, { history } from '../../store/configureStore';
 import { ConnectedRouter } from 'react-router-redux';
-import { DIType, RouteItems, RouteItem } from '../../FlowTypes';
-import withDI from '../../DI';
+import { RouteItems, RouteItem } from '../../FlowTypes';
+import DI from '../../diFactory';
 
-type Props = { di: DIType };
+type Props = { routes: () => Array<RouteItem> };
 
-const Root = ({ di }: Props) => {
+const Root = ({ routes }: Props) => {
 	const _renderRoutes = (routes: Array<RouteItems>) => {
 		return routes.map((route: RouteItem) => {
 			return (
@@ -27,7 +27,7 @@ const Root = ({ di }: Props) => {
 		<Provider store={store}>
 			<ConnectedRouter history={history}>
 				<div>
-					{_renderRoutes(di.get('routes'))}
+					{_renderRoutes(routes())}
 				</div>
 			</ConnectedRouter>
 		</Provider>
@@ -35,7 +35,7 @@ const Root = ({ di }: Props) => {
 };
 
 Root.propTypes = {
-	di: PropTypes.object.isRequired,
+	routes: PropTypes.func.isRequired,
 };
 
-export default withDI(Root);
+export default DI()(Root);
