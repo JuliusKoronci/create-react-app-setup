@@ -5,6 +5,7 @@
     "stage-2"
   ],
   "plugins": [
-    "transform-class-properties"
+    "transform-class-properties",
+    "cycle-circular"
   ]
 }
