@@ -1,0 +1,5 @@
+exports[`(Component) Login Should match snapshot 1`] = `
+<div>
+  Login
+</div>
+`;
