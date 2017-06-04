@@ -1,10 +1,10 @@
 import React from 'react';
-import { storiesOf, action } from '@kadira/storybook';
-import { WithNotes } from '@kadira/storybook-addon-notes';
+import { storiesOf, action } from '@storybook/react';
+import { WithNotes } from '@storybook/addon-notes';
 import Demo from './containers/Demo';
 import { Provider } from 'react-redux';
 import store from '../../store/configureStore';
-import { withKnobs } from '@kadira/storybook-addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 
 storiesOf('Demo', module)
 	.addDecorator(
