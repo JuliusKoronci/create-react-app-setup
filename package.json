@@ -46,6 +46,7 @@
     "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "coverage": "istanbul check-coverage --statements 50 --functions 30 --branches 30 --lines 50",
+    "lint": "eslint src",
     "flow": "flow",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",

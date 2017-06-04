@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { WithNotes } from '@storybook/addon-notes';
 import Demo from './containers/Demo';
 import { Provider } from 'react-redux';
