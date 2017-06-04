@@ -9,7 +9,7 @@ const handleSuccess = (state, action) => {
 		request: false,
 		loaded: true,
 		success: true,
-		data: action.response
+		data: action.response,
 	}
 };
 const handleError = (state, action) => {
@@ -36,12 +36,12 @@ export const initialState: APIResponse = {
 	data: {
 		token: '',
 		username: '',
-	}
+	},
 };
 
 const loginReducer = (state?: APIResponse = initialState, action: ReduxApiAction) => {
 	try {
-		actions[action.type](state);
+		return actions[action.type](state, action);
 	} catch (e) {
 		return state;
 	}
