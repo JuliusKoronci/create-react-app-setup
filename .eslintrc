@@ -2,7 +2,7 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "plugins": [
-    "flow-vars"
+    "flowtype"
   ],
   "rules": {
     "flow-vars/define-flow-type": 1,
