@@ -100,7 +100,7 @@ export class Demo extends Component {
 
 Demo.propTypes = {
   demo: PropTypes.shape({
-    list: PropTypes.Array.isRequired,
+    list: PropTypes.Array,
   }).isRequired,
   createEntry: PropTypes.func.isRequired,
   deleteEntry: PropTypes.func.isRequired,

@@ -9,7 +9,6 @@ import store, { history } from '../../store/configureStore';
 import { RouteItems, RouteItem } from '../../FlowTypes';
 import routes from '../../routes';
 
-
 const Root = () => {
   const renderRoutes = (routeList: Array<RouteItems>) => routeList.map((route: RouteItem) => (
     <Route key={route.path} exact path={route.path} component={route.component()}>
