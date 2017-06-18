@@ -1,16 +1,16 @@
 import React from 'react';
-import Root from '../index';
 import { shallow } from 'enzyme';
+import Root from '../index';
 
 const wrapper = shallow(
-	<Root />);
+  <Root />);
 
 describe('DemoView', () => {
-	it('should exist', () => {
-		expect(Root).toBeDefined();
-	});
-	it('renders without issues', () => {
-		expect(wrapper.length).toBe(1);
-	});
+  it('should exist', () => {
+    expect(Root).toBeDefined();
+  });
+  it('renders without issues', () => {
+    expect(wrapper.length).toBe(1);
+  });
 });
 

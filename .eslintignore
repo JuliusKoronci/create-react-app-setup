@@ -1,0 +1,6 @@
+node_modules/*
+build/*
+flowTypes/*
+coverage/*
+.storybook/*
+src/store/configureStore.js

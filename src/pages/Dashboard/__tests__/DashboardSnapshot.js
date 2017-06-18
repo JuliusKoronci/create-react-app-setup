@@ -6,8 +6,8 @@ import Dashboard from '../Dashboard';
 
 const wrapper = shallow(<Dashboard />);
 describe('(Component) Dashboard', () => {
-	it('Should match snapshot', () => {
-		expect(toJson(wrapper)).toMatchSnapshot();
-	});
+  it('Should match snapshot', () => {
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
 

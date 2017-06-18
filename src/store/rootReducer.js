@@ -3,8 +3,8 @@ import { routerReducer } from 'react-router-redux';
 import { demoReducer } from '../modules/Demo';
 
 const rootReducer = combineReducers({
-	router: routerReducer,
-	demo: demoReducer,
+  router: routerReducer,
+  demo: demoReducer,
 });
 
 export default rootReducer;

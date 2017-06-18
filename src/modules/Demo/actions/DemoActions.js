@@ -9,12 +9,10 @@ import { Entry } from '../types/types';
  * @param entry
  * @returns {{type: string, entry: Entry}}
  */
-export const createEntry = (entry: Entry): {} => {
-	return {
-		type: demoActions.CREATE_ENTRY,
-		entry,
-	}
-};
+export const createEntry = (entry: Entry): {} => ({
+  type: demoActions.CREATE_ENTRY,
+  entry,
+});
 
 /**
  * Delete an existing entru from list
@@ -22,10 +20,8 @@ export const createEntry = (entry: Entry): {} => {
  * @param id
  * @returns {{type: string, id: number}}
  */
-export const deleteEntry = (id: number): {} => {
-	return {
-		type: demoActions.DELETE_ENTRY,
-		id,
-	}
-};
+export const deleteEntry = (id: number): {} => ({
+  type: demoActions.DELETE_ENTRY,
+  id,
+});
 

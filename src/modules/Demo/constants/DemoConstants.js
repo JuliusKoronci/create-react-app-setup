@@ -1,8 +1,8 @@
 // @flow
 
 const demoActions = {
-	CREATE_ENTRY: 'CREATE_ENTRY',
-	DELETE_ENTRY: 'DELETE_ENTRY',
+  CREATE_ENTRY: 'CREATE_ENTRY',
+  DELETE_ENTRY: 'DELETE_ENTRY',
 };
 
 export { demoActions };

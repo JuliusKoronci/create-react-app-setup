@@ -10,38 +10,37 @@ export const history = createHistory();
 const routerMiddlewareWithHistory = routerMiddleware(history);
 
 function applyMiddlewareWithDevTool(...middleware) {
-	if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-		return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
-			applyMiddleware(...middleware)
-		);
-	}
-
-	return compose(
-		applyMiddleware(...middleware),
-		DevTools.instrument()
-	);
-
+  if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    return window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
+      applyMiddleware(...middleware),
+    );
+  }
+  
+  return compose(
+    applyMiddleware(...middleware),
+    DevTools.instrument(),
+  );
 }
 
 const createDevStore = createStore(
-	rootReducer,
-	applyMiddlewareWithDevTool(routerMiddlewareWithHistory, thunk, createLogger)
+  rootReducer,
+  applyMiddlewareWithDevTool(routerMiddlewareWithHistory, thunk, createLogger),
 );
 
 const createProdStore = createStore(
-	rootReducer,
-	applyMiddleware(routerMiddlewareWithHistory, thunk)
+  rootReducer,
+  applyMiddleware(routerMiddlewareWithHistory, thunk),
 );
 
 const env = process.env.NODE_ENV;
 const store = env === 'development' ? createDevStore : createProdStore;
 
 if (env === 'development' && module.hot) {
-	// Enable Webpack hot module replacement for reducers
-	module.hot.accept('./rootReducer', () => {
-		const nextRootReducer = require('./rootReducer').default;
-		store.replaceReducer(nextRootReducer)
-	})
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./rootReducer', () => {
+    const nextRootReducer = require('./rootReducer').default;
+    store.replaceReducer(nextRootReducer);
+  });
 }
 
 export default store;

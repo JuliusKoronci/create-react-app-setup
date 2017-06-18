@@ -3,6 +3,7 @@
 .*/node_modules/react-event-listener/.*
 .*/node_modules/node-sass/.*
 .*/node_modules/react-motion/.*
+.*/node_modules/eslint-plugin-jsx-a11y/.*
 .*/__tests__/.*
 
 [include]

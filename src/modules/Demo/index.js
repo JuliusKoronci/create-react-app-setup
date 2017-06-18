@@ -1,3 +1,4 @@
 import demoReducer from './reducers/DemoReducer';
+import Demo from './containers/Demo';
 
-export { demoReducer };
+export { demoReducer, Demo };

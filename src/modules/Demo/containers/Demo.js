@@ -1,112 +1,119 @@
 // @flow
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import DemoView from '../components/DemoView';
-import {createEntry, deleteEntry} from '../actions/DemoActions';
-import {Entry, Error} from '../types/types';
+import { createEntry, deleteEntry } from '../actions/DemoActions';
+import { Entry, Error } from '../types/types';
 
 type State = {
-	form: Entry,
-	errors: Array < Error >
+  form: Entry,
+  errors: Array<Error>
 }
 
-const initialState : Entry = {
-	title: '',
-	desc: ''
+const initialState: Entry = {
+  title: '',
+  desc: '',
 };
 
 export class Demo extends Component {
 
-	state : State = {
-		form: initialState,
-		errors: []
-	};
+  state: State = {
+    form: initialState,
+    errors: [],
+  };
 
-	/**
-	 * Handle form submission
-	 *
-	 * @param e
-	 * @private
-	 */
-	_onSubmit = (e : Event) => {
-		e.preventDefault();
-		if (!this._validateEntry(this.state.form)) {
-			return;
-		}
-		this
-			.props
-			.createEntry(this.state.form);
+  /**
+   * Handle form submission
+   *
+   * @param e
+   * @private
+   */
+  onSubmit = (e: Event) => {
+    e.preventDefault();
+    if (!this.validateEntry(this.state.form)) {
+      return;
+    }
+    this.props.createEntry(this.state.form);
 
-		this.setState({form: initialState, errors: []});
-	};
+    this.setState({ form: initialState, errors: [] });
+  };
 
-	/**
-	 * Handle form field change
-	 *
-	 * @param field
-	 * @param value
-	 * @private
-	 */
-	_onChange = (field : string, value : string) => {
-		this.setState({
-			form: {
-				...this.state.form,
-				[field]: value
-			}
-		})
-	};
+  /**
+   * Handle form field change
+   *
+   * @param field
+   * @param value
+   * @private
+   */
+  onChange = (field: string, value: string) => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [field]: value,
+      },
+    });
+  };
 
-	/**
-	 * Validate fields before submitting
-	 *
-	 * @param entry
-	 * @returns {boolean}
-	 * @private
-	 */
-	_validateEntry = (entry : Entry) : boolean => {
-		const errors = [];
-		if (!entry.title || entry.title === '') {
-			errors.push({field: 'title', message: 'title is required'})
-		}
-		if (!entry.desc || entry.desc === '') {
-			errors.push({field: 'desc', message: 'description is required'})
-		}
+  /**
+   * Validate fields before submitting
+   *
+   * @param entry
+   * @returns {boolean}
+   * @private
+   */
+  validateEntry = (entry: Entry): boolean => {
+    const errors = [];
+    if (!entry.title || entry.title === '') {
+      errors.push({ field: 'title', message: 'title is required' });
+    }
+    if (!entry.desc || entry.desc === '') {
+      errors.push({ field: 'desc', message: 'description is required' });
+    }
 
-		if (errors.length === 0) {
-			return true;
-		}
+    if (errors.length === 0) {
+      return true;
+    }
 
-		this.setState({errors: errors});
+    this.setState({ errors });
 
-		return false;
-	};
+    return false;
+  };
 
-	render() {
-		const {demo, deleteEntry} = this.props;
-		const {form, errors} = this.state;
-		return (<DemoView form={form} list={demo.list} errors={errors} actions={{
-			'submit': this._onSubmit,
-			'change': this._onChange,
-			deleteEntry
-		}}/>);
-	}
+  render() {
+    const { deleteEntry, demo } = this.props;
+    const { form, errors } = this.state;
+    return (<DemoView
+      form={form}
+      list={demo.list}
+      errors={errors}
+      actions={{
+        submit: this.onSubmit,
+        change: this.onChange,
+        deleteEntry,
+      }}
+    />);
+  }
 }
 
 Demo.propTypes = {
-	demo: PropTypes.object
+  demo: PropTypes.shape({
+    list: PropTypes.Array.isRequired,
+  }).isRequired,
+  createEntry: PropTypes.func.isRequired,
+  deleteEntry: PropTypes.func.isRequired,
 };
 
-function _mapStoreToProps(state) {
-	return {demo: state.demo};
+function mapStoreToProps(state) {
+  return { demo: state.demo };
 }
-function _mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		createEntry,
-		deleteEntry
-	}, dispatch);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    createEntry,
+    deleteEntry,
+  }, dispatch);
 }
 
-export default connect(_mapStoreToProps, _mapDispatchToProps)(Demo);
+export default connect(mapStoreToProps, mapDispatchToProps)(Demo);

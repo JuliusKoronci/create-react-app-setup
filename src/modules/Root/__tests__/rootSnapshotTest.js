@@ -1,14 +1,14 @@
 import React from 'react';
-import Root from '../index';
-import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import { shallow } from 'enzyme';
+import Root from '../index';
 
 const wrapper = shallow(
-	<Root />
+  <Root />,
 );
 describe('Root DemoView', () => {
-	it('Should match snapshot', () => {
-		expect(toJson(wrapper)).toMatchSnapshot();
-	});
+  it('Should match snapshot', () => {
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 });
 
