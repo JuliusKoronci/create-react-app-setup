@@ -12,8 +12,8 @@ type Args = {
   list: Array<Object>,
   actions: {
     submit: () => void,
-    deleteEntry: () => void,
-    change: () => void
+    deleteEntry: (id: number) => void,
+    change: (field: string, value: string) => void
   },
   form: Entry,
   errors: Array<Error>

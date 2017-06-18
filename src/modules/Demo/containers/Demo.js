@@ -31,7 +31,8 @@ export class Demo extends Component {
    * @param e
    * @private
    */
-  onSubmit = (e: Event) => {
+  // eslint-disable-next-line no-undef
+  onSubmit = (e: InputEvent) => {
     e.preventDefault();
     if (!this.validateEntry(this.state.form)) {
       return;

@@ -39,10 +39,10 @@ function mapToQueryString(json) {
  * @param params
  * @param queryParams
  */
-export const getPath = (name: string, params: ?{} = undefined, queryParams: ?{} = undefined) => {
+export const getPath = (name: string, params: {} = {}, queryParams: {} = {}) => {
   const route: RouteItem = routes.find((item: RouteItem) => item.name === name);
   let path = route.path;
-  if (params) {
+  if (Object.keys(params).length !== 0) {
     const keys = Object.keys(params);
     keys.forEach((key) => {
       const replace = `:${key}`;
@@ -50,7 +50,7 @@ export const getPath = (name: string, params: ?{} = undefined, queryParams: ?{} 
     });
   }
 
-  if (queryParams) {
+  if (Object.keys(queryParams).length !== 0) {
     path += `?${mapToQueryString(queryParams)}`;
   }
 

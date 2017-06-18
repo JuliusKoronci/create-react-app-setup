@@ -4,3 +4,4 @@ flowTypes/*
 coverage/*
 .storybook/*
 src/store/configureStore.js
+src/FlowTypes.js
