@@ -5,4 +5,6 @@ export default (jsonObject: {}) => {
   keys.forEach((key) => {
     data.append(key, jsonObject[key]);
   });
+
+  return data;
 };

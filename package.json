@@ -60,7 +60,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
-    "coverage": "istanbul check-coverage --statements 50 --functions 30 --branches 30 --lines 50",
+    "coverage": "istanbul check-coverage --statements 80 --functions 75 --branches 72 --lines 78",
     "lint": "eslint --fix src",
     "flow": "flow",
     "storybook": "start-storybook -p 9009 -s public",
@@ -68,5 +68,13 @@
     "api": "json-server --watch api.json",
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive"
+  },
+  "jest":{
+    "collectCoverageFrom": [
+      "!src/store/configureStore.js",
+      "!src/index.js",
+      "!src/**/*.story.js",
+      "src/**/*.{js,jsx}"
+    ]
   }
 }

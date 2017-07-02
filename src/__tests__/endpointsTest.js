@@ -3,7 +3,7 @@ import { basePath, getEndpoint } from '../endpoints';
 describe('basePath', () => {
   it('should be equal to a fixed path', () => {
     // this should fail if we change the REST api endpoint and we should update it accordingly
-    expect(basePath).toEqual('http://localhost:8080/app_dev.php');
+    expect(basePath).toEqual('http://localhost:8080');
   });
 });
 

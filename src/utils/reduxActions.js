@@ -16,6 +16,9 @@ export const axiosActionTypes = {
 };
 
 export function createAxiosAction(type = 'get', reducerName, endpointName) {
+  if (!reducerName || !endpointName) {
+    throw new Error('reducer name and endpoint name are required for createAxiosAction');
+  }
   const consts = constants(reducerName);
   return function (replaceParams: {} = {}, queryParams: {} = {}, ...rest) {
     return (dispatch) => {

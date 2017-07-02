@@ -37,7 +37,7 @@ export const success = (responseStoreName: string = 'response') => ({
 
   next(state, action) {
     const responeBody = {};
-    if (action.payload) {
+    if (action && action.payload) {
       responeBody[responseStoreName] = action.payload;
     }
     return {

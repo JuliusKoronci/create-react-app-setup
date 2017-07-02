@@ -4,7 +4,7 @@ exports[`(Component) Login Should match snapshot 1`] = `
 <Login
   handleChange={[Function]}
   handleSubmit={[Function]}
-  state={Object {}}
+  login={[Function]}
   store={
     Object {
       "clearActions": [Function],

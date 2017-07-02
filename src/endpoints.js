@@ -1,6 +1,6 @@
 import { pathToParams, mapToQueryString } from './utils/urlMapper';
 
-export const basePath = 'http://localhost:8080/app_dev.php';
+export const basePath = 'http://localhost:8080';
 
 const apiEndpoints = {
   login: { path: '/api/login' },
