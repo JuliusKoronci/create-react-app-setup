@@ -1,7 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(Component) Login Should match snapshot 1`] = `
-<div>
-  Login
-</div>
+<form>
+  <input
+    onChange={[Function]}
+    placeholder="Username"
+    type="text"
+    value=""
+  />
+  <input
+    onChange={[Function]}
+    placeholder="Password"
+    type="text"
+    value=""
+  />
+  <button
+    onClick={[Function]}
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
 `;

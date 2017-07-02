@@ -17,5 +17,7 @@ exports[`(Component) Homepage Should match snapshot 1`] = `
   >
     Demo
   </Link>
+  <br />
+  <Connect(Login) />
 </div>
 `;

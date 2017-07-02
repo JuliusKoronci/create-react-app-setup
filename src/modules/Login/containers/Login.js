@@ -1,62 +1,60 @@
 // @flow
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import axios from 'axios';
 import LoginView from '../components/Login';
+import { actions, REDUCER_NAME } from '../ducks/loginDuck';
+import formData from '../../../utils/formData';
 
 export class Login extends Component {
   state = {
-    username: '',
-    password: '',
-    response: '',
+    formValues: {
+      _username: '',
+      _password: '',
+    },
   };
 
   onChange = (key: string, value: string | number) => {
     this.setState({
-      [key]: value,
+      formValues: {
+        ...this.state.formValues,
+        [key]: value,
+      },
     });
   };
   // eslint-disable-next-line no-undef
   onSubmit = (e: Event) => {
     e.preventDefault();
-    const { username, password } = this.state;
-    // eslint-disable-next-line no-undef
-    const data = new FormData();
-    data.append('_username', username);
-    data.append('_password', password);
-
-    axios
-      .post('http://localhost:8080/app_dev.php/api/login', data)
-      .then(response => this.setState({ response: response.data.token }))
-      .catch((error) => {
-        const status = error.response.status;
-        if (status === 401) {
-          this.setState({ response: 'Unauthorized' });
-        }
-      });
+    const { formValues } = this.state;
+    this.props.login({}, {}, formData(formValues));
   };
 
   render() {
-    const { username, password, response } = this.state;
+    const { formValues } = this.state;
     return (
-      <div>
-        {response}
-        <LoginView
-          formValues={{ username, password }}
-          handleChange={this.onChange}
-          handleSubmit={this.onSubmit}
-        />
-      </div>
+      <LoginView
+        formValues={formValues}
+        handleChange={this.onChange}
+        handleSubmit={this.onSubmit}
+      />
     );
   }
 }
 
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+};
+
 function mapStoreToProps(state) {
-  return { state };
+  return {
+    [REDUCER_NAME]: state[REDUCER_NAME],
+  };
 }
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({
+    ...actions,
+  }, dispatch);
 }
 
 export default connect(mapStoreToProps, mapDispatchToProps)(Login);

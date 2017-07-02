@@ -7,25 +7,25 @@ export type InitialState = {
 };
 
 export const request = {
-    next(state, action) {
-        return {
-            ...state,
-            isFetching: true,
-            error: false,
-            searchIndex: action.payload,
-        };
-    },
+  next(state, action) {
+    return {
+      ...state,
+      isFetching: true,
+      error: false,
+      searchIndex: action.payload,
+    };
+  },
 };
 
 export const error = {
-    next(state, action) {
-        return {
-            ...state,
-            isFetching: false,
-            error: true,
-            errorResponse: action.payload,
-        };
-    },
+  next(state, action) {
+    return {
+      ...state,
+      isFetching: false,
+      error: true,
+      errorResponse: action.payload,
+    };
+  },
 };
 
 /**
@@ -33,36 +33,34 @@ export const error = {
  * @param responseStoreName
  * @returns {*}
  */
-export const success = (responseStoreName: string = 'response') => {
-    return {
+export const success = (responseStoreName: string = 'response') => ({
 
-        next(state, action) {
-            const responeBody = {};
-            if (action.payload) {
-                responeBody[responseStoreName] = action.payload;
-            }
-            return {
-                ...state,
-                isFetching: false,
-                error: false,
-                loaded: true,
-                ...responeBody,
-            };
-        },
+  next(state, action) {
+    const responeBody = {};
+    if (action.payload) {
+      responeBody[responseStoreName] = action.payload;
+    }
+    return {
+      ...state,
+      isFetching: false,
+      error: false,
+      loaded: true,
+      ...responeBody,
     };
-};
+  },
+});
 
 /**
  * Use this when someone clicks on a popover with error to be closed
  * @type {{next: ((state))}}
  */
 export const clearError = {
-    next(state) {
-        return {
-            ...state,
-            error: false,
-        };
-    },
+  next(state) {
+    return {
+      ...state,
+      error: false,
+    };
+  },
 };
 
 /**
@@ -71,52 +69,50 @@ export const clearError = {
  * @param initialState
  * @returns {*}
  */
-export const reset = (initialState: {} = {}) => {
+export const reset = (initialState: {} = {}) => ({
+  next() {
     return {
-        next() {
-            return {
-                ...initialState,
-            };
-        },
+      ...initialState,
     };
-};
+  },
+});
 
 export const baseInitialState: InitialState = (withResponse = true, optional: {} = {}) => {
-    const base = {
-        isFetching: false,
-        error: false,
-        errorResponse: null,
-        loaded: false,
-        ...optional,
-    };
+  const base = {
+    isFetching: false,
+    error: false,
+    errorResponse: null,
+    loaded: false,
+    ...optional,
+  };
 
-    const reponse = {
-        response: {},
-    };
+  const reponse = {
+    response: {},
+  };
 
-    return withResponse ? {...base, ...reponse} : base;
+  return withResponse ? { ...base, ...reponse } : base;
 };
 
 export const constants = (baseName) => {
-    const caps = baseName.toUpperCase();
-    return {
-        request: `${caps}_REQUEST`,
-        success: `${caps}_SUCCESS`,
-        error: `${caps}_ERROR`,
-        loadMore: `${caps}_LOAD_MORE`,
-        reset: `${caps}_RESET`,
-        clearError: `${caps}_CLEAR_ERROR`,
-    };
+  const caps = baseName.toUpperCase();
+  return {
+    request: `${caps}_REQUEST`,
+    success: `${caps}_SUCCESS`,
+    error: `${caps}_ERROR`,
+    loadMore: `${caps}_LOAD_MORE`,
+    reset: `${caps}_RESET`,
+    clearError: `${caps}_CLEAR_ERROR`,
+  };
 };
 
 export const createStandardReducer = (baseName) => {
-    const consts = constants(baseName);
+  const consts = constants(baseName);
 
-    return {
-        [consts.request]: request,
-        [consts.success]: success(),
-        [consts.error]: error,
-        [consts.reset]: reset,
-        [consts.clearError]: clearError,
-    };
+  return {
+    [consts.request]: request,
+    [consts.success]: success(),
+    [consts.error]: error,
+    [consts.reset]: reset,
+    [consts.clearError]: clearError,
+  };
 };

@@ -1,18 +1,19 @@
-import {buildApi, post} from 'redux-bees';
+import { pathToParams, mapToQueryString } from './utils/urlMapper';
+
+export const basePath = 'http://localhost:8080/app_dev.php';
 
 const apiEndpoints = {
-    login: {method: post, path: '/api/login'},
+  login: { path: '/api/login' },
 };
 
-const config = {
-    baseUrl: 'http://localhost:8080/app_dev.php',
-    configureHeaders(headers) {
-        return {
-            ...headers,
-            'Content-Type': 'application/x-www-form-urlencoded',
-        };
-    },
+export const getEndpoint = (base, config) => (name, params, queryParams) => {
+  const endpoint = config[name];
+  if (!endpoint) {
+    throw new Error(`${name} missing in endpoints`);
+  }
+
+  return `${base}${pathToParams(endpoint.path, params)}${mapToQueryString(queryParams, '?')}`;
 };
 
-export const api = buildApi(apiEndpoints, config);
-export default api;
+export default getEndpoint(basePath, apiEndpoints);
+

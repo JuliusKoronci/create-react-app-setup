@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 // @flow
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -12,15 +13,15 @@ class Login extends PureComponent {
       <form>
         <input
           type="text"
-          value={formValues.username}
+          value={formValues._username}
           placeholder="Username"
-          onChange={e => handleChange('username', e.target.value)}
+          onChange={e => handleChange('_username', e.target.value)}
         />
         <input
           type="text"
-          value={formValues.password}
+          value={formValues._password}
           placeholder="Password"
-          onChange={e => handleChange('password', e.target.value)}
+          onChange={e => handleChange('_password', e.target.value)}
         />
         <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
@@ -30,14 +31,14 @@ class Login extends PureComponent {
 
 Login.defaultProps = {
   formValues: {
-    username: '',
-    password: '',
+    _username: '',
+    _password: '',
   },
 };
 Login.propTypes = {
   formValues: PropTypes.shape({
-    username: PropTypes.string,
-    password: PropTypes.string,
+    _username: PropTypes.string,
+    _password: PropTypes.string,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
