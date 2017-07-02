@@ -18,7 +18,7 @@
     "flow": "^0.2.3",
     "flow-bin": "^0.48.0",
     "history": "^4.6.1",
-    "material-ui": "^0.17.4",
+    "material-ui": "^0.18.5",
     "prop-types": "^15.5.8",
     "ramda": "^0.24.1",
     "react": "^15.5.4",
