@@ -11,9 +11,7 @@ import getOrFail from './getOrFail';
  * @var name key of the desired value, accepts dot notation username
  * @var match value to compare the key to
  */
-const matchFN = fastMemoize(function(list, name, match) {
-	return list.find((items) => items[name] === match);
-});
+const matchFN = fastMemoize((list, name, match) => list.find(items => items[name] === match));
 /**
  * Returns a value from array list based on comparison with memoization
  *
@@ -23,9 +21,7 @@ const matchFN = fastMemoize(function(list, name, match) {
  * @var name key of the desired value, accepts dot notation username
  * @var match value to compare the key to
  */
-const matchFNArray = fastMemoize(function(list, match) {
-	return list.find((items) => items === match);
-});
+const matchFNArray = fastMemoize((list, match) => list.find(items => items === match));
 
 /**
  * Returns a value from a json tree with memoization
@@ -33,12 +29,10 @@ const matchFNArray = fastMemoize(function(list, match) {
  * @var list json tree of values [state]
  * @var key key of the desired value, accepts dot notation [storename.objectname]
  */
-const selectList = fastMemoize(function(list, key) {
-	return getOrFail(list, key);
-});
+const selectList = fastMemoize((list, key) => getOrFail(list, key));
 
 export default {
-	itemByMatch: _.curry((list, name, match) => matchFN(list, name, match)),
-	itemByArrayMatch: _.curry((list, match) => matchFNArray(list, match)),
-	listByKey: _.curry((list, key) => selectList(list, key)),
+  itemByMatch: _.curry((list, name, match) => matchFN(list, name, match)),
+  itemByArrayMatch: _.curry((list, match) => matchFNArray(list, match)),
+  listByKey: _.curry((list, key) => selectList(list, key)),
 };

@@ -20,14 +20,12 @@ export function createAxiosAction(type = 'get', reducerName, endpointName) {
     throw new Error('reducer name and endpoint name are required for createAxiosAction');
   }
   const consts = constants(reducerName);
-  return function (replaceParams: {} = {}, queryParams: {} = {}, ...rest) {
-    return (dispatch) => {
-      dispatch(createAction(consts.request));
+  return (replaceParams: {} = {}, queryParams: {} = {}, ...rest) => (dispatch) => {
+    dispatch(createAction(consts.request));
 
-      const endpoint = createUrl(endpointName, replaceParams, queryParams);
-      return axios[type](endpoint, ...rest)
+    const endpoint = createUrl(endpointName, replaceParams, queryParams);
+    return axios[type](endpoint, ...rest)
         .then(response => dispatch(createAction(consts.success, response.data)))
         .catch(error => dispatch(createAction(consts.error, error.response.data)));
-    };
   };
 }
